@@ -69,24 +69,13 @@ const users = [
   },
 ];
 
-const getTotalBalanceByGender = (users, gender) => {
-  return users
-    .filter((user) => user.gender === gender)
-    .reduce((acc, user) => acc + user.balance, 0);
+const etSortedFriends = (users) => {
+  return (
+    [...users]
+      .flatMap((user) => user.friends)
+      // фильтр уникальных значений
+      .filter((friend, index, array) => array.indexOf(friend) === index)
+      .sort()
+  );
 };
-console.log(getTotalBalanceByGender(users, "female"));
-// const books = [
-//   { title: "Последнее королевство", author: "Бернард Корнуэлл", rating: 8.38 },
-//   { title: "На берегу спокойных вод", author: "Роберт Шекли", rating: 8.51 },
-//   { title: "Сон смешного человека", author: "Федор Достоевский", rating: 7.75 },
-//   { title: "Красна как кровь", author: "Ли Танит", rating: 8.14 },
-//   { title: "Сны В Ведьмином Доме", author: "Говард Лавкрафт", rating: 8.67 },
-// ];
-// const MIN_BOOK_RATING = 8;
-// // Пиши код ниже этой строки
-
-// const names = books
-//   .filter((rat) => rat.rating > MIN_BOOK_RATING)
-//   .map((book) => book.author)
-//   .sort();
-// console.log(names);
+console.log(etSortedFriends(users));
